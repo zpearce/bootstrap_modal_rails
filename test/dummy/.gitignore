@@ -1,0 +1,18 @@
+/.bundle
+/log/*
+/tmp/*
+
+/config/database.yml
+/config/local_env.yml
+/public/cache
+/public/assets
+
+**.orig
+
+.DS_Store
+
+# Textmate project files
+/*.tmproj
+
+# vim artifacts
+**.swp
