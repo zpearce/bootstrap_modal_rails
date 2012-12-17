@@ -1,5 +1,4 @@
 # On the fly creation via modal
-# Hmm I need them to stack
 $('[data-dynamic_modal]').click (e) ->
     $('#ajax-modal .progress').show()
     url = $(@).data('source')
