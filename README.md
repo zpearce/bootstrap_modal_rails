@@ -1,6 +1,5 @@
-Bootstrap Modal v2.0
+# Bootstrap Modal v2.0
 [![Gem Version](https://badge.fury.io/rb/bootstrap_modal_rails.png)](http://badge.fury.io/rb/bootstrap_modal_rails)
-=============
 
 See live demo [here](http://jschr.github.com/bootstrap-modal/).
 
