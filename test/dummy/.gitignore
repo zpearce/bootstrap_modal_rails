@@ -2,7 +2,7 @@
 /log/*
 /tmp/*
 
-/config/database.yml
+/db/*.sqlite3
 /config/local_env.yml
 /public/cache
 /public/assets
