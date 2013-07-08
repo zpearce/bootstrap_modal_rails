@@ -1,20 +1,20 @@
 /* ===========================================================
- * bootstrap-modal.js v2.1
- * ===========================================================
- * Copyright 2012 Jordan Schroter
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * ========================================================== */
+* bootstrap-modal.js v2.1
+* ===========================================================
+* Copyright 2012 Jordan Schroter
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+* ========================================================== */
 
 
 !function ($) {
@@ -36,15 +36,15 @@
       this.options = options;
 
       this.$element = $(element)
-        .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this));
+      .delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this));
 
       this.options.remote && this.$element.find('.modal-body').load(this.options.remote);
 
       var manager = typeof this.options.manager === 'function' ?
-        this.options.manager.call(this) : this.options.manager;
+      this.options.manager.call(this) : this.options.manager;
 
       manager = manager.appendModal ?
-        manager : $(manager).modalmanager().data('modalmanager');
+      manager : $(manager).modalmanager().data('modalmanager');
 
       manager.appendModal(this);
     },
@@ -58,7 +58,7 @@
 
       if (this.isShown) return;
 
-      this.$element.triggerHandler(e);
+      this.$element.trigger(e);
 
       if (e.isDefaultPrevented()) return;
 
@@ -74,7 +74,7 @@
 
       e = $.Event('hide');
 
-      this.$element.triggerHandler(e);
+      this.$element.trigger(e);
 
       if (!this.isShown || e.isDefaultPrevented()) return (this.isShown = false);
 
@@ -89,20 +89,20 @@
       $(document).off('focusin.modal');
 
       this.$element
-        .removeClass('in')
-        .removeClass('animated')
-        .removeClass(this.options.attentionAnimation)
-        .removeClass('modal-overflow')
-        .attr('aria-hidden', true);
+      .removeClass('in')
+      .removeClass('animated')
+      .removeClass(this.options.attentionAnimation)
+      .removeClass('modal-overflow')
+      .attr('aria-hidden', true);
 
       $.support.transition && this.$element.hasClass('fade') ?
-        this.hideWithTransition() :
-        this.hideModal();
+      this.hideWithTransition() :
+      this.hideModal();
     },
 
     layout: function () {
       var prop = this.options.height ? 'height' : 'max-height',
-        value = this.options.height || this.options.maxHeight;
+      value = this.options.height || this.options.maxHeight;
 
       if (this.options.width){
         this.$element.css('width', this.options.width);
@@ -121,25 +121,25 @@
       }
 
       this.$element.find('.modal-body')
-        .css('overflow', '')
-        .css(prop, '');
-
-      var modalOverflow = $(window).height() - 10 < this.$element.height();
+      .css('overflow', '')
+      .css(prop, '');
 
       if (value){
         this.$element.find('.modal-body')
-          .css('overflow', 'auto')
-          .css(prop, value);
+        .css('overflow', 'auto')
+        .css(prop, value);
       }
 
+      var modalOverflow = $(window).height() - 10 < this.$element.height();
+            
       if (modalOverflow || this.options.modalOverflow) {
         this.$element
-          .css('margin-top', 0)
-          .addClass('modal-overflow');
+        .css('margin-top', 0)
+        .addClass('modal-overflow');
       } else {
         this.$element
-          .css('margin-top', 0 - this.$element.height() / 2)
-          .removeClass('modal-overflow');
+        .css('margin-top', 0 - this.$element.height() / 2)
+        .removeClass('modal-overflow');
       }
     },
 
@@ -148,24 +148,24 @@
 
       if (this.isShown && this.options.consumeTab) {
         this.$element.on('keydown.tabindex.modal', '[data-tabindex]', function (e) {
-            if (e.keyCode && e.keyCode == 9){
+          if (e.keyCode && e.keyCode == 9){
             var $next = $(this),
-              $rollover = $(this);
+            $rollover = $(this);
 
             that.$element.find('[data-tabindex]:enabled:not([readonly])').each(function (e) {
               if (!e.shiftKey){
                 $next = $next.data('tabindex') < $(this).data('tabindex') ?
-                  $next = $(this) :
-                  $rollover = $(this);
+                $next = $(this) :
+                $rollover = $(this);
               } else {
                 $next = $next.data('tabindex') > $(this).data('tabindex') ?
-                  $next = $(this) :
-                  $rollover = $(this);
+                $next = $(this) :
+                $rollover = $(this);
               }
             });
 
             $next[0] !== $(this)[0] ?
-              $next.focus() : $rollover.focus();
+            $next.focus() : $rollover.focus();
 
             e.preventDefault();
           }
@@ -190,10 +190,10 @@
 
     hideWithTransition: function () {
       var that = this
-        , timeout = setTimeout(function () {
-          that.$element.off($.support.transition.end);
-          that.hideModal();
-        }, 500);
+      , timeout = setTimeout(function () {
+        that.$element.off($.support.transition.end);
+        that.hideModal();
+      }, 500);
 
       this.$element.one($.support.transition.end, function () {
         clearTimeout(timeout);
@@ -202,19 +202,18 @@
     },
 
     hideModal: function () {
-      this.$element
-        .hide()
-        .triggerHandler('hidden');
-
       var prop = this.options.height ? 'height' : 'max-height';
       var value = this.options.height || this.options.maxHeight;
 
       if (value){
         this.$element.find('.modal-body')
-          .css('overflow', '')
-          .css(prop, '');
+        .css('overflow', '')
+        .css(prop, '');
       }
 
+      this.$element
+      .hide()
+      .trigger('hidden');
     },
 
     removeLoading: function () {
@@ -232,8 +231,8 @@
         var doAnimate = $.support.transition && animate;
 
         this.$loading = $('<div class="loading-mask ' + animate + '">')
-          .append(this.options.spinner)
-          .appendTo(this.$element);
+        .append(this.options.spinner)
+        .appendTo(this.$element);
 
         if (doAnimate) this.$loading[0].offsetWidth; // force reflow
 
@@ -242,16 +241,16 @@
         this.isLoading = true;
 
         doAnimate ?
-          this.$loading.one($.support.transition.end, callback) :
-          callback();
+        this.$loading.one($.support.transition.end, callback) :
+        callback();
 
       } else if (this.isLoading && this.$loading) {
         this.$loading.removeClass('in');
 
         var that = this;
         $.support.transition && this.$element.hasClass('fade')?
-          this.$loading.one($.support.transition.end, function () { that.removeLoading() }) :
-          that.removeLoading();
+        this.$loading.one($.support.transition.end, function () { that.removeLoading() }) :
+        that.removeLoading();
 
       } else if (callback) {
         callback(this.isLoading);
@@ -271,15 +270,15 @@
 
       if (this.options.attentionAnimation){
         this.$element
-          .removeClass('animated')
-          .removeClass(this.options.attentionAnimation);
+        .removeClass('animated')
+        .removeClass(this.options.attentionAnimation);
 
         var that = this;
 
         setTimeout(function () {
           that.$element
-            .addClass('animated')
-            .addClass(that.options.attentionAnimation);
+          .addClass('animated')
+          .addClass(that.options.attentionAnimation);
         }, 0);
       }
 
@@ -290,7 +289,7 @@
 
     destroy: function () {
       var e = $.Event('destroy');
-      this.$element.triggerHandler(e);
+      this.$element.trigger(e);
       if (e.isDefaultPrevented()) return;
 
       this.teardown();
@@ -310,8 +309,8 @@
       this.$element.off('.modal');
       this.$element.removeData('modal');
       this.$element
-        .removeClass('in')
-        .attr('aria-hidden', true);
+      .removeClass('in')
+      .attr('aria-hidden', true);
     }
   };
 
@@ -322,8 +321,8 @@
   $.fn.modal = function (option, args) {
     return this.each(function () {
       var $this = $(this),
-        data = $this.data('modal'),
-        options = $.extend({}, $.fn.modal.defaults, $this.data(), typeof option == 'object' && option);
+      data = $this.data('modal'),
+      options = $.extend({}, $.fn.modal.defaults, $this.data(), typeof option == 'object' && option);
 
       if (!data) $this.data('modal', (data = new Modal(this, options)));
       if (typeof option == 'string') data[option].apply(data, [].concat(args));
@@ -356,18 +355,18 @@
   * ============== */
 
   $(function () {
-    $(document).off('.modal').on('click.modal.data-api', '[data-toggle="modal"]', function ( e ) {
+    $(document).off('click.modal').on('click.modal.data-api', '[data-toggle="modal"]', function ( e ) {
       var $this = $(this),
-        href = $this.attr('href'),
-        $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))), //strip for ie7
-        option = $target.data('modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data());
+      href = $this.attr('href'),
+      $target = $($this.attr('data-target') || (href && href.replace(/.*(?=#[^\s]+$)/, ''))), //strip for ie7
+      option = $target.data('modal') ? 'toggle' : $.extend({ remote: !/#/.test(href) && href }, $target.data(), $this.data());
 
       e.preventDefault();
       $target
-        .modal(option)
-        .one('hide', function () {
-          $this.focus();
-        })
+      .modal(option)
+      .one('hide', function () {
+        $this.focus();
+      })
     });
   });
 
