@@ -1,4 +1,4 @@
-# Bootstrap Modal v2.0
+# Bootstrap Modal v2.1
 [![Gem Version](https://badge.fury.io/rb/bootstrap_modal_rails.png)](http://badge.fury.io/rb/bootstrap_modal_rails)
 
 See live demo [here](http://jschr.github.com/bootstrap-modal/).
@@ -27,7 +27,7 @@ Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'bootstrap_modal_rails', '~> 2.0.0'
+    gem 'bootstrap_modal_rails', '~> 2.1.0'
 
 And then execute:
 
